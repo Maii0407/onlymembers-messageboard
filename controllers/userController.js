@@ -12,6 +12,13 @@ exports.user_create_get = ( req, res, next ) => {
 exports.user_create_post = [
   body( 'userID' ).trim().isLength({ min: 1 }).escape().withMessage( 'Username must be specified' ),
   body( 'password' ).trim().isLength({ min: 8 }).escape().withMessage( 'Password must be specified, and must be 8 characters minimum' ),
+  body( 'confirm' ).trim().escape()
+    .custom( ( value, { req } ) => {
+      if( value !== req.body.password ) {
+        throw new Error( 'Password confirmation does not match with password' );
+      }
+      return true;
+    }),
 
   ( req, res, next ) => {
     const errors = validationResult( req );
@@ -30,7 +37,8 @@ exports.user_create_post = [
 
         const user = new User({
           userID: req.body.userID,
-          password: hashedPassword
+          password: hashedPassword,
+          confirm: hashedPassword
         }).save( ( err ) => {
           if( err ) { return next( err ); }
   
