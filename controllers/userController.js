@@ -1,15 +1,17 @@
 const User = require( '../models/user' );
 
-const { body, validationResult } = require( 'express-validator' );
 const bcrypt = require( 'bcryptjs' );
 
-exports.user_create_get = ( req, res, next ) => {
+const { body, validationResult } = require( 'express-validator' );
+
+//sign up funtionality
+exports.userSignUpGet = ( req, res, next ) => {
   res.render( 'sign_up', {
     title: 'Sign Up'
   })
 };
 
-exports.user_create_post = [
+exports.userSignUpPost = [
   body( 'userID' ).trim().isLength({ min: 1 }).escape().withMessage( 'Username must be specified' ),
   body( 'password' ).trim().isLength({ min: 8 }).escape().withMessage( 'Password must be specified, and must be 8 characters minimum' ),
   body( 'confirm' ).trim().escape()
@@ -38,7 +40,6 @@ exports.user_create_post = [
         const user = new User({
           userID: req.body.userID,
           password: hashedPassword,
-          confirm: hashedPassword
         }).save( ( err ) => {
           if( err ) { return next( err ); }
   

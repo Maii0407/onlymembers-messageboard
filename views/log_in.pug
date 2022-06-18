@@ -1,0 +1,20 @@
+extends layout 
+
+block content
+  h1 Log In
+  a( href='/' ) Go Back
+
+  form( method='POST' action='' )
+    label( for='userID-login' ) UserID:
+    input#userID-login(
+      placeholder='Enter userID'
+      type='text'
+      name='userID-login'
+    )
+    label( for='userPassword-login' ) Password:
+    input#userPassword-login(
+      placeholder='Enter Password'
+      type='password'
+      name='userPassword-login'
+    )
+    button( type='submit' ) Log In
