@@ -15,7 +15,6 @@ const bcrypt = require( 'bcryptjs' );
 const User = require( './models/user' );
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 passport.use(
   new LocalStrategy(
@@ -62,11 +61,6 @@ app.set('view engine', 'pug');
 
 app.use( session({ secret: 'cats', resave: false, saveUninitialized: true }));
 
-app.use( ( req, res, next ) => {
-  res.locals.currentUser = req.user;
-  next();
-});
-
 app.use( passport.initialize());
 app.use( passport.session());
 app.use( express.urlencoded({ extended: false }));
@@ -78,7 +72,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

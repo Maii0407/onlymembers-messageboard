@@ -3,6 +3,7 @@ extends layout
 block content
   if user
     h1 Welcome Back #{ user.userID }
+    a( href='/create-post' ) Create a New Post
     a( href='/log-out' ) Log Out
 
   else

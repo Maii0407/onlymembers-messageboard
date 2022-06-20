@@ -8,7 +8,7 @@ const PostSchema = new Schema ({
     required: true
   },
   content: {
-    type: Strine,
+    type: String,
     required: true
   },
   date: {
