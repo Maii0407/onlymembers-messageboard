@@ -6,12 +6,7 @@ const userController = require( '../controllers/userController' );
 const postController = require( '../controllers/postController' );
 
 /* GET home page. */
-router.get( '/', function(req, res, next) {
-  res.render('index', {
-    title: 'Express',
-    user: req.user
-  });
-});
+router.get( '/', postController.postList )
 
 router.get( '/sign-up', userController.userSignUpGet );
 router.post( '/sign-up', userController.userSignUpPost );

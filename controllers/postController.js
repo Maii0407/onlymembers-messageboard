@@ -5,7 +5,16 @@ const { body, validationResult } = require( 'express-validator' );
 const async = require( 'async' );
 
 exports.postList = ( req, res, next ) => {
-  res.send( 'POST LIST' );
+  Post.find({}, 'title content date user').sort({ date: 1 }).populate( 'user' )
+    .exec( ( err, list_posts ) => {
+      if( err ) { return next( err ); }
+
+      res.render( 'index', {
+        title: 'onlyMembers',
+        post_list: list_posts,
+        user: req.user
+      });
+    })
 };
 
 exports.postCreateGet = ( req, res, next ) => {

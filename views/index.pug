@@ -2,12 +2,35 @@ extends layout
 
 block content
   if user
-    h1 Welcome Back #{ user.userID }
-    a( href='/create-post' ) Create a New Post
-    a( href='/log-out' ) Log Out
+    h1 Welcome to onlyMembers #{ user.userID } 
 
-  else
-    h1= title
-    p Welcome to #{title}
-    a( href='/sign-up' ) Sign Up
-    a( href='/log-in' ) Log In
+    .postContainer 
+      each post in post_list 
+        .postCard 
+          h4 #{ post.title } 
+          p #{ post.content }
+          p #{ post.dateFormatted }
+          p #{ post.user.userID }
+
+    .navbar
+      a( href='/log-out' )
+        img( src='/images/nav-icons/logout.png' )
+      a( href='/create-post' )
+        img( src='/images/nav-icons/write.png' )
+
+  else 
+    h1= title 
+
+    .postContainer 
+      each post in post_list 
+        .postCard 
+          h4 #{ post.title } 
+          p #{ post.content }
+          p unknown
+          p anon
+
+    .navbar
+      a( href='/log-in' )
+        img( src='/images/nav-icons/login.png' )
+      a( href='/sign-up' )
+        img( src='/images/nav-icons/sign-up.png' )
