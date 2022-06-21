@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+  .heading
+    h1= title
+    a( href='/' )
+      img( src='/images/nav-icons/arrow-back.png' )
+
+  p.deletePostPara Do you really want to delete this Post?
+
+  form( method='POST' action='' )
+    input#postid(
+      type='hidden'
+      name='postid'
+      required='true'
+      value=post._id 
+    )
+    button( type='submit' ) Delete Post

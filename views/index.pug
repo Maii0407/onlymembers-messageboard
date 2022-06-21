@@ -22,7 +22,7 @@ block content
         a( href='/log-out' ) Logout
 
     .heading
-      h1 onlyMembers 
+      h1 #{ user.userID } 
       img( src='/images/nav-icons/open.png' onclick='showNavBar()' )
 
     if user.membership === 'regular'
@@ -56,7 +56,7 @@ block content
               p #{ post.content }
               p.postDate #{ post.dateFormatted }
               p.postID #{ post.user.userID }
-              button( type='button' ) Delete
+              a.deletePostBtn( href=`/${ post._id }/delete-post` ) Delete
             img( src=post.user.avatar )
 
   else 

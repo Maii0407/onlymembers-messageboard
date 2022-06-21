@@ -176,3 +176,34 @@ form button {
 .postContent .postID {
   font-size: 10px;
 }
+
+.postContent .postID {
+  margin-bottom: 20px;
+}
+
+.deletePostPara {
+  margin-top: 100px;
+  font-family: 'Lobster', cursive;
+  font-size: 20px;
+  color: red;
+  text-align: center;
+}
+
+.deletePostBtn {
+  text-decoration: none;
+  font-family: 'Lobster', cursive;
+  color: red;
+  background-color: gray;
+  font-size: 25px;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.userInfo p {
+  text-align: center;
+  margin-top: 100px;
+  color: red;
+  font-family: 'Lobster', cursive;
+}

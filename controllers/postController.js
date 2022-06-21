@@ -55,3 +55,29 @@ exports.postCreatePost = [
     }
   }
 ];
+
+exports.postDeleteGet = ( req, res, next ) => {
+  Post.findById( req.params.id ).exec( ( err, post ) => {
+    if( err ) { return next( err ); }
+    if( post == null ) {
+      res.redirect( '/create-post' )
+    }
+
+    res.render( 'post_delete', {
+      title: 'Delete Post',
+      post: post
+    });
+  });
+};
+
+exports.postDeletePost = ( req, res, next ) => {
+  Post.findById( req.body.postid ).exec( ( err, post ) => {
+    if( err ) { return next( err ); }
+
+    Post.findByIdAndRemove( req.body.postid, deletePost = ( err ) => {
+      if( err ) { return next( err ); }
+
+      res.redirect( '/' )
+    });
+  })
+};

@@ -35,4 +35,7 @@ router.post( '/create-post', postController.postCreatePost );
 router.get( '/:id/upgrade', userController.userUpgradeGet );
 router.post( '/:id/upgrade', userController.userUpgradePost );
 
+router.get( '/:id/delete-post', postController.postDeleteGet );
+router.post( '/:id/delete-post', postController.postDeletePost );
+
 module.exports = router;
