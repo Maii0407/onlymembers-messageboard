@@ -2,7 +2,22 @@ extends layout
 
 block content
   if user
-    h1 Welcome to onlyMembers #{ user.userID } 
+    if user.membership === 'regular'
+      .navbar
+        a.closeNav( href='javascript:void(0)' onclick='closeNavBar()' ) X
+        a( href='/log-out' ) Logout
+        a( href='' ) Upgrade Membership
+
+    else 
+      .navbar
+        a.closeNav( href='javascript:void(0)' onclick='closeNavBar()' ) X
+        a( href='/log-out' ) Logout
+        a( href='' ) Upgrade Membership
+        a( href='/create-post' ) Create Post
+
+    .heading
+      h1 onlyMembers 
+      img( src='/images/nav-icons/open.png' onclick='showNavBar()' )
 
     .postContainer 
       each post in post_list 
@@ -12,14 +27,15 @@ block content
           p #{ post.dateFormatted }
           p #{ post.user.userID }
 
-    .navbar
-      a( href='/log-out' )
-        img( src='/images/nav-icons/logout.png' )
-      a( href='/create-post' )
-        img( src='/images/nav-icons/write.png' )
-
   else 
-    h1= title 
+    .navbar
+      a.closeNav( href='javascript:void(0)' onclick='closeNavBar()' ) X
+      a( href='/log-in' ) Login
+      a( href='/sign-up' ) Sign Up
+
+    .heading
+      h1= title
+      img( src='/images/nav-icons/open.png' onclick='showNavBar()' )
 
     .postContainer 
       each post in post_list 
@@ -28,9 +44,3 @@ block content
           p #{ post.content }
           p unknown
           p anon
-
-    .navbar
-      a( href='/log-in' )
-        img( src='/images/nav-icons/login.png' )
-      a( href='/sign-up' )
-        img( src='/images/nav-icons/sign-up.png' )

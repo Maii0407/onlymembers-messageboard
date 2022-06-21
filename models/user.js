@@ -10,6 +10,10 @@ const UserSchema = new Schema ({
   password: {
     type: String,
     required: true
+  },
+  membership: {
+    type: String,
+    required: true
   }
 });
 

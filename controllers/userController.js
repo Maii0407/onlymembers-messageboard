@@ -40,6 +40,7 @@ exports.userSignUpPost = [
         const user = new User({
           userID: req.body.userID,
           password: hashedPassword,
+          membership: 'regular'
         }).save( ( err ) => {
           if( err ) { return next( err ); }
   
