@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  a( href='/' ) Go Back
+  .heading
+    h1= title
+    a( href='/' )
+      img( src='/images/nav-icons/arrow-back.png' )
 
   form( method='POST' action='' )
     label( for='userID' ) UserID:
@@ -25,7 +27,7 @@ block content
     )
     button( type='submit' ) Submit
 
-    if errors 
-      ul
-        for error in errors 
-          li!= error.msg
+  if errors 
+    ul
+      for error in errors 
+        li!= error.msg

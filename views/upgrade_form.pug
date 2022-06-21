@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+  .heading
+    h1= title
+    a( href='/' )
+      img( src='/images/nav-icons/arrow-back.png' )
+
+  form( method='POST' action='' )
+    label( for='secretCode' ) Super Secret Code:
+    input#secretCode(
+      type='text'
+      placeholder='Enter Super Secret Code'
+      name='secretCode'
+    )
+    button( type='submit' ) Upgrade
+
+  if errors 
+    ul
+      for error in errors 
+        li!= error.msg

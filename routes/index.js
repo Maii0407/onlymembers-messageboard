@@ -32,4 +32,7 @@ router.get( '/log-out', ( req, res ) => {
 router.get( '/create-post', postController.postCreateGet );
 router.post( '/create-post', postController.postCreatePost );
 
+router.get( '/:id/upgrade', userController.userUpgradeGet );
+router.post( '/:id/upgrade', userController.userUpgradePost );
+
 module.exports = router;

@@ -80,3 +80,54 @@ h1 {
 .postContainer {
   margin-top: 60px;
 }
+
+form {
+  max-width: 100%;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+form label {
+  font-family: 'Lobster', cursive;
+  color: red;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+form input {
+  margin-bottom: 20px;
+  text-indent: 10px;
+  border: 1px solid white;
+  height: 30px;
+  border-radius: 5px;
+  color: red;
+  background-color: #202022;
+  font-weight: bold;
+}
+
+form textarea {
+  height: 100px;
+  margin-bottom: 20px;
+  text-indent: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: red;
+  background-color: #202022;
+  font-weight: bold;
+  resize: vertical;
+}
+
+form button {
+  border: 1px solid white;
+  height: 40px;
+  font-family: 'Lobster', cursive;
+  background-color: black;
+  border-radius: 5px;
+  color: red;
+  font-size: 20px;
+  margin-right: 50px;
+  margin-left: 50px;
+}

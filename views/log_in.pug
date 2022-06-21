@@ -1,8 +1,10 @@
 extends layout 
 
 block content
-  h1 Log In
-  a( href='/' ) Go Back
+  .heading
+    h1 Log In
+    a( href='/' )
+      img( src='/images/nav-icons/arrow-back.png' )
 
   form( method='POST' action='' )
     label( for='userID-login' ) UserID:

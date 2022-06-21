@@ -1,7 +1,7 @@
 const User = require( '../models/user' );
 
 const bcrypt = require( 'bcryptjs' );
-
+const async = require( 'async' );
 const { body, validationResult } = require( 'express-validator' );
 
 //sign up funtionality
@@ -47,6 +47,79 @@ exports.userSignUpPost = [
           res.redirect( '/' );
         })
       })
+    }
+  }
+];
+
+exports.userUpgradeGet = ( req, res, next ) => {
+  User.findById( req.params.id ).exec( ( err, currentUser ) => {
+    if( err ) { return next( err ); }
+    if( currentUser == null ) {
+      const err = new Error( 'USER not found' );
+      err.status = 404;
+      return next( err );
+    }
+
+    res.render( 'upgrade_form', {
+      title: 'Upgrade Membership',
+      currentUser: currentUser
+    });
+  });
+};
+
+exports.userUpgradePost = [
+  body( 'secretCode', 'This must not be empty' ).trim().isLength({ min: 1 }).escape(),
+
+  ( req, res, next ) => {
+    const errors = validationResult( req );
+
+    if( req.body.secretCode === 'superSecretVIP' ) {
+      const user = new User({
+        userID: req.params.userID,
+        password: req.params.password,
+        membership: 'VIP',
+        _id: req.params.id
+      });
+
+      if( !errors.isEmpty() ) {
+        res.render( 'upgrade_form', {
+          title: 'Upgrade Membership',
+          currentUser: user,
+          errors: errors.array()
+        });
+        return;
+      }
+      else {
+        User.findByIdAndUpdate( req.params.id, user, {}, ( err, theuser ) => {
+          if( err ) { return next( err ); }
+  
+          res.redirect( '/' );
+        })
+      }
+    }
+    if( req.body.secretCode === 'superSecretADMIN' ) {
+      const user = new User({
+        userID: req.params.userID,
+        password: req.params.password,
+        membership: 'ADMIN',
+        _id: req.params.id
+      });
+
+      if( !errors.isEmpty() ) {
+        res.render( 'upgrade_form', {
+          title: 'Upgrade Membership',
+          currentUser: user,
+          errors: errors.array()
+        });
+        return;
+      }
+      else {
+        User.findByIdAndUpdate( req.params.id, user, {}, ( err, theuser ) => {
+          if( err ) { return next( err ); }
+  
+          res.redirect( '/' );
+        })
+      }
     }
   }
 ];

@@ -1,16 +1,17 @@
 extends layout 
 
 block content
-  h1= title
+  .heading
+    h1= title
 
   form( method='POST' action='' )
-    label( for='title' )
+    label( for='title' ) Title:
     input#title(
       type='text'
       placeholder='Enter a Title'
       name='title'
     )
-    label( for='content' )
+    label( for='content' ) Content:
     textarea#content(
       type='text'
       placeholder='Enter the content of the post'

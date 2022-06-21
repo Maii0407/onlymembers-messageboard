@@ -2,18 +2,24 @@ extends layout
 
 block content
   if user
-    if user.membership === 'regular'
+    if user.membership === 'ADMIN'
       .navbar
         a.closeNav( href='javascript:void(0)' onclick='closeNavBar()' ) X
-        a( href='/log-out' ) Logout
-        a( href='' ) Upgrade Membership
-
-    else 
-      .navbar
-        a.closeNav( href='javascript:void(0)' onclick='closeNavBar()' ) X
-        a( href='/log-out' ) Logout
-        a( href='' ) Upgrade Membership
         a( href='/create-post' ) Create Post
+        a( href='/log-out' ) Logout
+
+    if user.membership === 'VIP' 
+      .navbar
+        a.closeNav( href='javascript:void(0)' onclick='closeNavBar()' ) X
+        a( href='/create-post' ) Create Post
+        a( href=`/${ user._id }/upgrade` ) Upgrade Membership
+        a( href='/log-out' ) Logout
+
+    if user.membership === 'regular' 
+      .navbar
+        a.closeNav( href='javascript:void(0)' onclick='closeNavBar()' ) X
+        a( href=`/${ user._id }/upgrade` ) Upgrade Membership
+        a( href='/log-out' ) Logout
 
     .heading
       h1 onlyMembers 
