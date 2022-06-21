@@ -12,19 +12,33 @@ block content
       type='text'
       placeholder='Enter UserID'
       name='userID'
+      required='true'
     )
     label( for='password' ) Password:
     input#password(
       type='password'
       placeholder='Enter Password'
       name='password'
+      required='true'
     )
     label( for='confirm' ) Confirm Password: 
     input#confirm(
       type='password'
       placeholder='Confirm Password'
       name='confirm'
+      required='true'
     )
+    label( for='avatar' ) Avatar:
+    select#avatar(
+      type='select'
+      placeholder='Select an Avatar'
+      name='avatar'
+      required='true'
+    )
+      for avatar in avatars 
+        option(
+          value=avatar.location
+        ) #{ avatar.name }
     button( type='submit' ) Submit
 
   if errors 

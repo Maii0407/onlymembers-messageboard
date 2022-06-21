@@ -14,6 +14,10 @@ const UserSchema = new Schema ({
   membership: {
     type: String,
     required: true
+  },
+  avatar: {
+    type: String,
+    required: true
   }
 });
 

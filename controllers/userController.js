@@ -1,4 +1,6 @@
 const User = require( '../models/user' );
+const AvatarList = require( '../public/javascript/avatarList.js' );
+const avatars = AvatarList.avatars;
 
 const bcrypt = require( 'bcryptjs' );
 const async = require( 'async' );
@@ -7,7 +9,8 @@ const { body, validationResult } = require( 'express-validator' );
 //sign up funtionality
 exports.userSignUpGet = ( req, res, next ) => {
   res.render( 'sign_up', {
-    title: 'Sign Up'
+    title: 'Sign Up',
+    avatars: avatars
   })
 };
 
@@ -40,7 +43,8 @@ exports.userSignUpPost = [
         const user = new User({
           userID: req.body.userID,
           password: hashedPassword,
-          membership: 'regular'
+          membership: 'regular',
+          avatar: req.body.avatar
         }).save( ( err ) => {
           if( err ) { return next( err ); }
   

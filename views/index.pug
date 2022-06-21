@@ -25,13 +25,39 @@ block content
       h1 onlyMembers 
       img( src='/images/nav-icons/open.png' onclick='showNavBar()' )
 
-    .postContainer 
+    if user.membership === 'regular'
+      .postContainer 
       each post in post_list 
-        .postCard 
-          h4 #{ post.title } 
-          p #{ post.content }
-          p #{ post.dateFormatted }
-          p #{ post.user.userID }
+        .postCard
+          .postContent
+            h4 #{ post.title.toUpperCase() } 
+            p #{ post.content }
+            p.postDate unknown
+            p.postID anon
+          img( src=post.user.avatar )
+    
+    if user.membership === 'VIP'
+      .postContainer 
+        each post in post_list 
+          .postCard
+            .postContent
+              h4 #{ post.title.toUpperCase() }
+              p #{ post.content }
+              p.postDate #{ post.dateFormatted }
+              p.postID #{ post.user.userID }
+            img( src=post.user.avatar )
+
+    if user.membership === 'ADMIN'
+      .postContainer 
+        each post in post_list 
+          .postCard
+            .postContent
+              h4 #{ post.title.toUpperCase() }
+              p #{ post.content }
+              p.postDate #{ post.dateFormatted }
+              p.postID #{ post.user.userID }
+              button( type='button' ) Delete
+            img( src=post.user.avatar )
 
   else 
     .navbar
@@ -45,8 +71,10 @@ block content
 
     .postContainer 
       each post in post_list 
-        .postCard 
-          h4 #{ post.title } 
-          p #{ post.content }
-          p unknown
-          p anon
+        .postCard
+          .postContent
+            h4 #{ post.title.toUpperCase() } 
+            p #{ post.content }
+            p.postDate unknown
+            p.postID anon
+          img( src=post.user.avatar )
