@@ -1,14 +1,14 @@
 extends layout 
 
 block content 
-  .heading
+  .heading.headingForm
     h1= title
     a( href='/' )
       img( src='/images/nav-icons/arrow-back.png' )
 
   p.deletePostPara Do you really want to delete this Post?
 
-  form( method='POST' action='' )
+  form.delete-form( method='POST' action='' )
     input#postid(
       type='hidden'
       name='postid'

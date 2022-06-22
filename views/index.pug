@@ -23,7 +23,7 @@ block content
 
     .heading
       h1 #{ user.userID } 
-      img( src='/images/nav-icons/open.png' onclick='showNavBar()' )
+      img.home( src='/images/nav-icons/open.png' onclick='showNavBar()' )
 
     if user.membership === 'regular'
       .postContainer 
@@ -67,7 +67,7 @@ block content
 
     .heading
       h1= title
-      img( src='/images/nav-icons/open.png' onclick='showNavBar()' )
+      img.home( src='/images/nav-icons/open.png' onclick='showNavBar()' )
 
     .postContainer 
       each post in post_list 
